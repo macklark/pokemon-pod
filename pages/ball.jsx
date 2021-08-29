@@ -16,19 +16,19 @@ export default function Ball({ pokemon }) {
         />
       </div>
       <div className="shadow-lg p-6 md:w-1/4 md:rounded-r-lg">
-        <p className="text-center md:text-left md:text-6xl font-bold md:ml-5 text-3xl text-gray-600">
+        <p className="text-center md:text-6xl font-bold text-3xl text-gray-600">
           {pokemon.name}
         </p>
-        <div className="md:ml-5 flex justify-between mt-5">
+        <div className="flex justify-between mt-5">
           <p className="font-bold">XP</p>
           <p>{pokemon.base_experience}</p>
         </div>
-        <div className="md:ml-5 flex justify-between mt-5">
+        <div className="flex justify-between mt-5">
           <p className="font-bold">HP</p>
           <p>24/60</p>
         </div>
         <div className="mt-5 flex justify-between">
-          <div className="text-center px-5 py-2 md:px-0 md:ml-5">
+          <div className="text-center px-5 py-2 md:px-0">
             <p className="text-md font-bold">Weight</p>
             <p>{pokemon.weight} Kg</p>
           </div>
@@ -38,10 +38,10 @@ export default function Ball({ pokemon }) {
           </div>
         </div>
         <div>
-          <p className="text-left md:ml-5 font-bold mt-5">Moves</p>
+          <p className="text-left font-bold mt-5">Moves</p>
           {pokemon.moves.slice(0, 5).map((move, index) => {
             return (
-              <div className="md:ml-5 mt-2" key={index}>
+              <div className="mt-2" key={index}>
                 <p>{move.move.name}</p>
               </div>
             );
