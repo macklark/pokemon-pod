@@ -7,7 +7,7 @@ export default function Ball({ pokemon }) {
       <Head>
         <title>{pokemon.name} | Pokemon Pod</title>
       </Head>
-      <div className="bg-gradient-to-br from-red-500 via-black to-white p-10 md:rounded-l-lg">
+      <div className="bg-gray-200 rounded-l">
         <Image
           src={pokemon.image}
           alt={pokemon.name}
@@ -15,26 +15,38 @@ export default function Ball({ pokemon }) {
           width={500}
         />
       </div>
-      <div className="bg-gray-200 p-10 md:rounded-r-lg">
+      <div className="shadow-lg p-6 md:w-1/4 md:rounded-r-lg">
         <p className="text-center md:text-left md:text-6xl font-bold md:ml-5 text-3xl text-gray-600">
           {pokemon.name}
         </p>
-        <p className="text-center md:text-left md:text-2xl md:ml-5 text-xl text-gray-500 mt-2">
-          Weight : {pokemon.weight} kg
-        </p>
-        <p className="text-center md:text-left md:text-2xl md:ml-5 text-xl text-gray-500 mt-5 mb-4 font-bold">
-          Type
-        </p>
-        {pokemon.types.map((type, index) => {
-          return (
-            <ul
-              key={index}
-              className="text-center md:text-left md:ml-6 text-md text-gray-500"
-            >
-              <li>{type.type.name}</li>
-            </ul>
-          );
-        })}
+        <div className="md:ml-5 flex justify-between mt-5">
+          <p className="font-bold">XP</p>
+          <p>{pokemon.base_experience}</p>
+        </div>
+        <div className="md:ml-5 flex justify-between mt-5">
+          <p className="font-bold">HP</p>
+          <p>24/60</p>
+        </div>
+        <div className="mt-5 flex justify-between">
+          <div className="text-center px-5 py-2 md:px-0 md:ml-5">
+            <p className="text-md font-bold">Weight</p>
+            <p>{pokemon.weight} Kg</p>
+          </div>
+          <div className="text-center px-5 py-2 md:px-0">
+            <p className="text-md font-bold">Height</p>
+            <p>{pokemon.height} m</p>
+          </div>
+        </div>
+        <div>
+          <p className="text-left md:ml-5 font-bold mt-5">Moves</p>
+          {pokemon.moves.slice(0, 5).map((move, index) => {
+            return (
+              <div className="md:ml-5 mt-2" key={index}>
+                <p>{move.move.name}</p>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </div>
   );

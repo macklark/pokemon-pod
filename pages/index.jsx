@@ -14,6 +14,11 @@ import { useState } from "react";
 function PokemonLogo() {
   return (
     <div className="h-screen">
+      <div className="hidden md:block absolute left-1/2 top-1/4 w-72 h-72 bg-yellow-300 rounded-full mix-blend-multiply filter blur-xl opacity-0 md:opacity-50 animate-bubble"></div>
+      <div className="hidden md:block absolute top-1/2 right-1/2 w-72 h-72 bg-blue-300 rounded-full mix-blend-multiply filter blur-xl animate-bubble opacity-0 md:opacity-50"></div>
+      <div className="hidden md:block absolute top-1/2 right-1 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl animate-bubble opacity-0 md:opacity-50 animation-delay-4000"></div>
+      <div className="hidden md:block absolute top-1 left-1 w-32 h-32 bg-green-300 rounded-full mix-blend-multiply filter blur-xl animate-bubble opacity-0 md:opacity-50"></div>
+      <div className="hidden md:block absolute top-1 right-1/2 w-72 h-72 bg-red-300 rounded-full mix-blend-multiply filter blur-xl animate-bubble opacity-0 md:opacity-50"></div>
       <div className="absolute md:left-1/4 md:transform md:translate-x-1/4">
         <Image src={Logo} alt="pokemon logo" width={550} height={550} />
         <div className="flex justify-center">
@@ -64,37 +69,9 @@ function Cards({ pokeCards }) {
   );
 }
 
-// function Pagination({ pokePerPage, totalPoke, paginater }) {
-//   const pageNumbers = [];
-//   for (let i = 1; i <= Math.ceil(totalPoke / pokePerPage); i++) {
-//     pageNumbers.push(i);
-//   }
-
-//   return (
-//     <div className="flex mx-auto w-11/12 md:w-3/4 container mb-5">
-//       <ul className="flex list-none rounded my-2">
-//         {pageNumbers.map((page) => {
-//           return (
-//             <li key={page}>
-//               <a
-//                 className="relative block py-2 px-3 leading-tight bg-white border border-gray-300 text-blue-700 hover:bg-gray-200"
-//                 href="#"
-//                 onClick={() => paginater(page)}
-//               >
-//                 {page}
-//               </a>
-//             </li>
-//           );
-//         })}
-//       </ul>
-//     </div>
-//   );
-// }
-
 export default function Home({ pokemon }) {
   const [query, setQuery] = useState("");
-  const [currentPage, setCurrentPage] = useState(1);
-  const [pokePerPage] = useState(24);
+  const [pokePerPage, setPokePerPage] = useState(9);
 
   const fuse = new Fuse(pokemon, {
     keys: ["name"],
@@ -110,15 +87,10 @@ export default function Home({ pokemon }) {
     setQuery(value);
   };
 
-  const indexOfLastPokeCard = currentPage * pokePerPage;
-  const indexOfFirstPokeCard = indexOfLastPokeCard - pokePerPage;
-  const currentPokeCards = pokeResults.slice(
-    indexOfFirstPokeCard,
-    indexOfLastPokeCard
-  );
+  const currentPokeCards = pokeResults.slice(0, pokePerPage);
 
-  const paginate = (pageNumber) => {
-    setCurrentPage(pageNumber);
+  const showMoreHandler = () => {
+    setPokePerPage((prevValue) => prevValue + 9);
   };
 
   return (
@@ -137,12 +109,22 @@ export default function Home({ pokemon }) {
             onChange={searchHandler}
           />
         </div>
+        {currentPokeCards.length == 0 && (
+          <p className="bg-red-300 p-2 mx-auto w-11/12 md:w-1/2 container flex justify-center border-2 border-red-600 rounded">
+            No results found !
+          </p>
+        )}
         <Cards pokeCards={currentPokeCards} />
-        {/* <Pagination
-          pokePerPage={pokePerPage}
-          totalPoke={pokeResults.length}
-          paginater={paginate}
-        /> */}
+        <div className="flex justify-center mb-5">
+          {currentPokeCards.length > 8 && (
+            <button
+              className="px-4 py-3 border border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white"
+              onClick={showMoreHandler}
+            >
+              Load more
+            </button>
+          )}
+        </div>
       </main>
     </div>
   );
