@@ -6,6 +6,7 @@ import Link from "next/link";
 // Other imports
 import Logo from "../public/icons/logo.png";
 import Fuse from "fuse.js";
+import { motion } from "framer-motion";
 
 // React.js imports
 import { useState } from "react";
@@ -14,11 +15,6 @@ import { useState } from "react";
 function PokemonLogo() {
   return (
     <div className="h-screen">
-      <div className="hidden md:block absolute left-1/2 top-1/4 w-72 h-72 bg-yellow-300 rounded-full mix-blend-multiply filter blur-xl opacity-0 md:opacity-50 animate-bubble"></div>
-      <div className="hidden md:block absolute top-1/2 right-1/2 w-72 h-72 bg-blue-300 rounded-full mix-blend-multiply filter blur-xl animate-bubble opacity-0 md:opacity-50"></div>
-      <div className="hidden md:block absolute top-1/2 right-1 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl animate-bubble opacity-0 md:opacity-50 animation-delay-4000"></div>
-      <div className="hidden md:block absolute top-1 left-1 w-32 h-32 bg-green-300 rounded-full mix-blend-multiply filter blur-xl animate-bubble opacity-0 md:opacity-50"></div>
-      <div className="hidden md:block absolute top-1 right-1/2 w-72 h-72 bg-red-300 rounded-full mix-blend-multiply filter blur-xl animate-bubble opacity-0 md:opacity-50"></div>
       <div className="absolute md:left-1/4 md:transform md:translate-x-1/4">
         <Image src={Logo} alt="pokemon logo" width={550} height={550} />
         <div className="flex justify-center">
@@ -42,14 +38,14 @@ function PokemonLogo() {
 function Card({ pokeCard }) {
   return (
     <Link href={`/ball/?id=${pokeCard.identity}`}>
-      <a className="p-10 flex items-center rounded border-2 border-gray-200 hover:border-0 hover:shadow-lg transition duration-300">
+      <a className="p-10 flex items-center rounded border-2 border-gray-200 hover:shadow-2xl hover:scale-105 transform transiation-all duration-500">
         <Image
           src={pokeCard.image}
           alt={pokeCard.name}
           width={100}
           height={100}
         />
-        <p className="ml-5 text-3xl font-bold">{pokeCard.name}</p>
+        <p className="ml-5 text-3xl font-bold capitalize">{pokeCard.name}</p>
       </a>
     </Link>
   );
@@ -57,7 +53,10 @@ function Card({ pokeCard }) {
 
 function Cards({ pokeCards }) {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 mx-auto container w-11/12 md:w-3/4 mb-10 gap-2">
+    <motion.div
+      className="grid grid-cols-1 md:grid-cols-3 mx-auto container w-11/12 md:w-3/4 mb-10 gap-2"
+      exit={{ opacity: 0 }}
+    >
       {pokeCards.map((card, index) => {
         return (
           <div key={card.name}>
@@ -65,7 +64,7 @@ function Cards({ pokeCards }) {
           </div>
         );
       })}
-    </div>
+    </motion.div>
   );
 }
 
