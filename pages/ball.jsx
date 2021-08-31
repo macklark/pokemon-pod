@@ -154,13 +154,13 @@ export default function Ball({ pokemon }) {
               <p className="uppercase tracking-wider text-md text-gray-900">
                 Weight
               </p>
-              <p className="text-blue-300">{pokemon.weight} kg</p>
+              <p className="text-blue-400">{pokemon.weight} kg</p>
             </div>
             <div>
               <p className="uppercase tracking-wider text-md text-gray-900">
                 Height
               </p>
-              <p className="text-blue-300">{pokemon.height} m</p>
+              <p className="text-blue-400">{pokemon.height} m</p>
             </div>
           </div>
           <div className="mt-10">
@@ -169,7 +169,7 @@ export default function Ball({ pokemon }) {
             </p>
             {pokemon.abilities.slice(0, 3).map((ability, index) => {
               return (
-                <p className="text-blue-300 capitalize" key={index}>
+                <p className="text-blue-400 capitalize" key={index}>
                   {ability.ability.name}
                 </p>
               );
