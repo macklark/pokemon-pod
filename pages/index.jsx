@@ -106,7 +106,7 @@ export default function Home({ pokemon }) {
     <div>
       <Head>
         <title>Pokemon Pod</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.ico" width={50} height={50} />
         <meta name="author" content="macklark" />
         <meta name="description" content="Pokemon library at one stop" />
       </Head>
