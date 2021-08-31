@@ -7,6 +7,8 @@ export default function Ball({ pokemon }) {
       <Head>
         <title>{pokemon.name} | Pokemon-pod</title>
         <link rel="icon" href="/favicon.ico" />
+        <meta name="author" content="macklark" />
+        <meta name="description" content="info about every single pokemon" />
       </Head>
       <main className="flex justify-center">
         <div className="w-11/12 md:w-1/2 xl:w-1/4 mt-12 md:mt-28 px-10 md:py-5 py-3 rounded-2xl shadow-xl">

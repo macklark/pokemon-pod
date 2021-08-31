@@ -107,6 +107,8 @@ export default function Home({ pokemon }) {
       <Head>
         <title>Pokemon Pod</title>
         <link rel="icon" href="/favicon.ico" />
+        <meta name="author" content="macklark" />
+        <meta name="description" content="Pokemon library at one stop" />
       </Head>
       <main>
         <Stripe />
