@@ -5,11 +5,11 @@ export default function Ball({ pokemon }) {
   return (
     <>
       <Head>
-        <title>{pokemon.name}</title>
+        <title>{pokemon.name} | Pokemon-pod</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="flex justify-center">
-        <div className="w-11/12 md:w-1/4 mt-5 md:mt-28 px-10 py-5 rounded-2xl shadow-xl">
+        <div className="w-11/12 md:w-1/2 xl:w-1/4 mt-12 md:mt-28 px-10 md:py-5 py-3 rounded-2xl shadow-xl">
           <div className="flex justify-center">
             <Image
               src={pokemon.image}
@@ -144,7 +144,7 @@ export default function Ball({ pokemon }) {
               </svg>
             )}
           </div>
-          <div className="flex justify-center mt-5">
+          <div className="flex justify-center md:mt-5 mt-3">
             <p className="text-white px-3 py-2 rounded-xl bg-gradient-to-r from-green-200 to-blue-200">
               XP {pokemon.base_experience}
             </p>
