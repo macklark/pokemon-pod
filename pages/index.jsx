@@ -15,7 +15,7 @@ import { useState } from "react";
 function PokemonLogo() {
   return (
     <div className="h-screen">
-      <div className="absolute md:left-1/4 md:transform md:translate-x-1/4">
+      <div className="absolute xl:left-1/4 md:transform md:translate-x-1/4">
         <Image src={Logo} alt="pokemon logo" width={550} height={550} />
         <div className="flex justify-center">
           <label className="mr-5">Scroll down</label>
@@ -45,7 +45,9 @@ function Card({ pokeCard }) {
           width={100}
           height={100}
         />
-        <p className="ml-5 text-3xl font-bold capitalize">{pokeCard.name}</p>
+        <p className="ml-5 md:text-3xl text-xl font-bold capitalize">
+          {pokeCard.name}
+        </p>
       </a>
     </Link>
   );
@@ -65,6 +67,14 @@ function Cards({ pokeCards }) {
         );
       })}
     </motion.div>
+  );
+}
+
+function Stripe() {
+  return (
+    <div>
+      <div className="absolute xl:top-32 top-20 right-20 xl:right-1/2 bg-red-600 p-10 xl:w-72 xl:h-72 w-52 h-52 lg:r rounded-full animate-bubble"></div>
+    </div>
   );
 }
 
@@ -99,6 +109,7 @@ export default function Home({ pokemon }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
+        <Stripe />
         <PokemonLogo />
         <div className="mx-auto w-11/12 md:w-3/4 container mt-10 flex justify-center">
           <input
@@ -131,7 +142,7 @@ export default function Home({ pokemon }) {
 
 export async function getStaticProps() {
   try {
-    const fetcher = await fetch("https://pokeapi.co/api/v2/pokemon?limit=300");
+    const fetcher = await fetch("https://pokeapi.co/api/v2/pokemon?limit=600");
     const { results } = await fetcher.json();
 
     const imageSubstitute = results.map((result, index) => {
